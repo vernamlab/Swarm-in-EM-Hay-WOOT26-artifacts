@@ -86,32 +86,9 @@ or from the terminal, depending on your MATLAB setup:
 matlab -batch "nystrumASCAD"
 ```
 
-## Repository Files
 
-| File | Purpose |
-|---|---|
-| `fig_1_final.ipynb` | Regenerates Figure 1: MI estimation on ASCAD |
-| `fig2_a.ipynb` | Regenerates Figure 2(a): MI estimation under Gaussian noise |
-| `nystrumASCAD.m` | Regenerates Figure 2(b): Nyström approximation for MRE |
-| ASCAD data files | Required traces and labels for the ASCAD-based experiments |
 
-## Suggested Workflow
 
-```bash
-git clone <repo-url>
-cd <repo-folder>
-
-pip install git+https://github.com/gregversteeg/NPEET.git
-pip install numpy scipy matplotlib scikit-learn jupyter
-
-jupyter notebook fig_1_final.ipynb
-jupyter notebook fig2_a.ipynb
-```
-
-Then run the MATLAB script:
-
-```bash
-matlab -batch "nystrumASCAD"
 ```
 
 ## Notes
