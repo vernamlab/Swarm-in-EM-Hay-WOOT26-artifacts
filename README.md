@@ -1,5 +1,5 @@
 # Swarm in EM Hay Artifact WOOT'26
-This repository provides the source code to reproduce results from paper:
+This repository provides the source code to reproduce results from the paper:
 > **Swarm in EM Hay: Particle Swarm-guided Probe Placement for EM SCA**  
 > Dev Mehta, Seyedmohammad Nouraniboosjin, Maryam S. Safa, Shahin Tajik, Fatemeh Ganji  
 > ePrint: https://eprint.iacr.org/2025/2244.pdf
