@@ -31,7 +31,7 @@ The workflow is as follows:
 1. Install ChipWhisperer following the [official documentation](https://chipwhisperer.readthedocs.io/en/latest/).
    - This is required for capture and for notebook imports.
 
-2. Clone the SCAPEgoat library into the ChipWhisperer home directory.
+2. Clone the [SCAPEgoat](https://github.com/vernamlab/SCAPEgoat) library into the ChipWhisperer home directory.
    - This creates `scapegoat-main/` alongside the artifacts folder.
    - Keep the import path aligned with the notebook paths used in the notebooks.
 
