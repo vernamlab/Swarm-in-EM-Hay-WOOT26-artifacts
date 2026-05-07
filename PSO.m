@@ -22,15 +22,15 @@ clc;
 % -------------------------------------------------------------------------
 % Configuration
 % -------------------------------------------------------------------------
-inputDir = 'export_matlab';
-inputFile = 'MI_FPGA_impl_d_10x10_1000traces_20260506_1334.mat';
-gmmDir = 'output_table';
-gmmFile = 'GM_noiseless_pca_impl_d_new.mat';
-resultsDir = 'output_table';
+inputDir = 'MATLAB_exports'; % change it to input_matlab if you want to use the downaloaded data from the box
+inputFile = 'MI_FPGA_impl_d_10x10_1000traces_20260506_1334.mat'; % change it to appropriate file names
+gmmDir = 'output_matlab';
+gmmFile = 'GM_noiseless_pca_impl_d_new.mat'; % change it to appropriate file names
+resultsDir = 'output_matlab';
 resultsFile = 'exp_MI_fpga_impl_d_para_3_5.txt';
-figureDir = 'output_table';
+figureDir = 'output_matlab';
 figurePrefix = 'PSO_SwarmSize_t';
-gifDir = 'output_table';
+gifDir = 'output_matlab';
 gifPrefix = 'pso_visualization_10';
 
 % Create output folders if they do not already exist.
@@ -54,6 +54,9 @@ end
 % file_name = 'uc_t_heatmap.mat';
 file_name = fullfile(inputDir, inputFile);
 gm_pca = load(fullfile(gmmDir, gmmFile));
+
+%These parameters should be treated as hyperparameters to be tuned for each experimental setup, for instance via a grid search. In our experiments, the following parameters have been selected.
+
 
 c2_values = [0.8 1.2 1.5 1.8];
 c1_values = [1.0 1.5 1.8];

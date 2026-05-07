@@ -21,9 +21,9 @@ clearvars
 % -------------------------------------------------------------------------
 % Configuration
 % -------------------------------------------------------------------------
-inputDir = 'export_matlab';
-inputFile = 'data_100_121_impl_d.csv';
-outputDir = 'output_table';
+inputDir = 'MATLAB_exports';% change it to input_matlab if you want to use the downaloaded data from the box
+inputFile = 'data_100_121_impl_d.csv';% change it to appropriate file names
+outputDir = 'output_matlab';
 outputFile = 'GM_noiseless_pca_impl_d_new.mat';
 
 numGridLocations = 121;
