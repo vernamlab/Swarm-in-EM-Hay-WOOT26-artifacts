@@ -1,4 +1,13 @@
-# EM for Good
+# Swarm in EM Hay Artifact WOOT'26
+This repository contains the notebooks and scripts needed to regenerate the results shown in **Figure 1** and **Figure 2** of the paper:
+
+> **Swarm in EM Hay: Particle Swarm-guided Probe Placement for EM SCA**  
+> Dev Mehta, Seyedmohammad Nouraniboosjin, Maryam S. Safa, Shahin Tajik, Fatemeh Ganji  
+> ePrint: https://eprint.iacr.org/2025/2244.pdf
+
+## Overview
+
+The paper studies automated probe placement for electromagnetic side-channel analysis (EM SCA). In particular, it uses information-theoretic leakage metrics such as mutual information (MI) to identify informative leakage regions and guide probe placement. Figures 1 and 2 compare different MI estimators, including KSG, histogram-based MI, matrix-based Rényi entropy (MRE), and Nyström-accelerated MRE.
 
 This repository contains a compact EM-SCA workflow built around four edited files:
 
