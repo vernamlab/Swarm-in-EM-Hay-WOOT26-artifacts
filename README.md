@@ -33,7 +33,7 @@ The workflow is as follows:
 
 2. Clone the [SCAPEgoat](https://github.com/vernamlab/SCAPEgoat) library into the ChipWhisperer home directory.
    - This creates `scapegoat-main/` alongside the artifacts folder.
-   - Keep the import path aligned with the notebook paths used in the notebooks.
+   - Setup the paths to import the scapegoat libraries to the notebooks.
 
 3. Download the trace data from the same location as before:
    - [EMSCA Traces](https://app.box.com/v/EMSCA-for-good)
@@ -96,9 +96,7 @@ ChipWhisperer_home/
 
 ## Workflow Overview
 
-The base setup above stays the same. The new flow is layered on top of it.
-
-### 1. Capture
+### 1. Capture - Optional
 
 Use `EMSCA_capture_FPGA_UC.ipynb` when you want to generate new experiments.
 
@@ -124,7 +122,7 @@ The analysis notebook also includes a helper cell that builds a trace matrix for
 
 - `uc` uses the fixed trace window.
 - `impl_d`, and `impl_3` export the full trace.
-- The output is a CSV file used for the PCA/GMM preprocessing script.
+- The output is a CSV file used for the GMM preprocessing script.
 
 ### 4. MATLAB Processing
 
@@ -134,19 +132,15 @@ Use the MATLAB scripts after analysis exports are ready.
 - Run `PSO.m` after that, using the MI matrix and the generated GMM model.
 - If you skip either step, use the intermediate files from the Box download and point the MATLAB scripts to those files instead.
 
-## Outputs
-
-The analysis notebook produces these artifacts in `MATLAB_exports/`:
-
-- `MI_*.mat` and `MI_*.csv`
-- `TVLA_tstat_*.mat` and `TVLA_tstat_*.csv`
-- `CEMA_*.mat` and `CEMA_*.csv`
-
 The GMM generation script produces:
 
 - Processed trace data and GMM model files in the configured output folder
 
-The PSO script uses the MI or TVLA matrix and the GMM initialization file from the preceding steps.
+The PSO script reads the MI matrix and the GMM model, then writes:
+
+- A text results summary in `output_matlab/`
+- Swarm visit figures in `.fig` and `.png` format
+- PSO animation files in `.gif` format
 
 If you use the Box-provided intermediate files instead of regenerating them, update the MATLAB input folder to point to `input_matlab/`.
 
@@ -157,6 +151,11 @@ The `input_matlab/` folder contains three file types:
 - Heatmap inputs: `*_heatmap.mat`, `MI*.mat`
 
 Use files from the same dataset together and avoid mixing datasets.
+
+### 5. CPA for a Selected Location
+Return to the analysis notebook and run the "After PSO: CPA Traces at Specific Location" section for the location you want to evaluate from the output of the PSO. This step estimates how many traces are needed for key recovery at that point.
+
+Note that key recovery is not guaranteed for each byte at every location, especially for the FPGA implementation.
 
 ## Notes
 
