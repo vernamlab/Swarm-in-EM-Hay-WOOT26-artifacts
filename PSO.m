@@ -1,20 +1,66 @@
-% final_PSO_em_clean.m
-% Cleaned copy of final_PSO_em.m — minor formatting and debug-print cleanup only.
+% =========================================================================
+%                      PSO.m
+% =========================================================================
+% AUTHOR:         Dev Mehta
+% VERSION:        1.0
+% LAST MODIFIED:  2026-05-06
+%
+% DESCRIPTION:
+%   PSO framework for optimal probe location selection on electromagnetic 
+%   measurement grids using Mutual Information heatmaps and GMM-based 
+%   initialization. Compares Random, LHS, and PCA initialization methods.
+%
+% INPUTS:  MI heatmap (.mat), Denoised GMM model
+% OUTPUTS: Results summary (.txt), visit histograms (.fig/.png), PSO GIFs
+%
+% DEPENDENCIES: Optimization Toolbox, Statistics and Machine Learning Toolbox
+% =========================================================================
 
 close all;
 clc;
 
-% Load the matrix from the .mat file
-file_name = 'MI_impl_d.mat';
+% -------------------------------------------------------------------------
+% Configuration
+% -------------------------------------------------------------------------
+inputDir = 'export_matlab';
+inputFile = 'MI_FPGA_impl_d_10x10_1000traces_20260506_1334.mat';
+gmmDir = 'output_table';
+gmmFile = 'GM_noiseless_pca_impl_d_new.mat';
+resultsDir = 'output_table';
+resultsFile = 'exp_MI_fpga_impl_d_para_3_5.txt';
+figureDir = 'output_table';
+figurePrefix = 'PSO_SwarmSize_t';
+gifDir = 'output_table';
+gifPrefix = 'pso_visualization_10';
+
+% Create output folders if they do not already exist.
+if ~exist(gmmDir, 'dir')
+    mkdir(gmmDir);
+end
+if ~exist(resultsDir, 'dir')
+    mkdir(resultsDir);
+end
+if ~exist(figureDir, 'dir')
+    mkdir(figureDir);
+end
+if ~exist(gifDir, 'dir')
+    mkdir(gifDir);
+end
+
+% -------------------------------------------------------------------------
+% Load inputs
+% -------------------------------------------------------------------------
+% file_name = 'MI_impl_d.mat';
 % file_name = 'uc_t_heatmap.mat';
-gm_pca = load("GM_noiseless_pca_impl_d.mat");
+file_name = fullfile(inputDir, inputFile);
+gm_pca = load(fullfile(gmmDir, gmmFile));
 
 c2_values = [0.8 1.2 1.5 1.8];
 c1_values = [1.0 1.5 1.8];
 inertia_values = {[0.5 0.7], [0.7 0.9]};
 
 data = load(file_name);
-matrix = data.MI_masked_smooth;
+matrix = data.MI;
 
 global visitCount;
 global matrix_global visitCount currentMethod
@@ -27,10 +73,12 @@ rng(1)
 fun = @(x) -interpolateMatrixd(matrix, x(1), x(2));
 
 % Swarm size
-SwarmSiz = [25];
+SwarmSiz = [3 5];
 
-% Define your file name
-outputFileName = ['exp_MI_fpga_impl_d_para_25.txt'];
+% -------------------------------------------------------------------------
+% Prepare result logging
+% -------------------------------------------------------------------------
+outputFileName = fullfile(resultsDir, resultsFile);
 fileID = fopen(outputFileName, 'w');
 if fileID == -1
     error('Failed to open the file for writing.');
@@ -109,7 +157,7 @@ for pok = 1:numel(SwarmSiz)
                         success = dist < 8.2;
 
                         % Save results
-                        results_saba = [results_saba; c1, c2, inertiaRange(1), inertiaRange(2), dist, success];
+                        %results_saba = [results_saba; c1, c2, inertiaRange(1), inertiaRange(2), dist, success];
 
                         % Store into main results structure
                         results(resultIdx).method = methods{m};
@@ -154,9 +202,9 @@ for pok = 1:numel(SwarmSiz)
     title("PSO Swarm Visit Distribution (Swarm Size: " + SwarmSize + ")");
     colorbar;
     grid on;
-    filename = sprintf('PSO_SwarmSize_t_%d.fig', SwarmSize);
+    filename = fullfile(figureDir, sprintf('%s_%d.fig', figurePrefix, SwarmSize));
     savefig(filename);
-    pngFilename = strrep(filename, '.fig', '.png');
+    pngFilename = fullfile(figureDir, sprintf('%s_%d.png', figurePrefix, SwarmSize));
     saveas(gcf, pngFilename);
     close(gcf);
 
@@ -258,6 +306,7 @@ end
 function stop = swarmPlot(optimValues, state)
     global matrix_global visitCount currentMethod
     global lhs_init random_init gaussian_pca_init
+    global gifDir gifPrefix
 
     stop = false;
 
@@ -296,7 +345,7 @@ function stop = swarmPlot(optimValues, state)
                 warning('Index out of bounds: x_idx=%d, y_idx=%d', x_idx(i), y_idx(i));
             end
         end
-        gifFilename = sprintf('pso_visualization_10_%d.gif', numParticles);
+        gifFilename = fullfile(gifDir, sprintf('%s_%d.gif', gifPrefix, numParticles));
         frameDelay = 0.1; % Time delay between frames
 
         % Visualization

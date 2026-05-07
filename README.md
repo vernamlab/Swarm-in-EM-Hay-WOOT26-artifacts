@@ -11,7 +11,7 @@ The current flow is:
 
 1. Download the public data to the same folder structure used by the notebooks.
 2. Capture new traces, or load the public datasets in the analysis notebook.
-3. Export MI, TVLA, and CEMA matrices from the analysis notebook.
+3. Export MI and TVLA matrices from the analysis notebook.
 4. Use the MATLAB scripts for denoising, GMM preparation, and PSO optimization.
 
 ## Base Setup
