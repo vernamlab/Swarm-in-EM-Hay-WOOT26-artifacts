@@ -1,0 +1,3 @@
+[submodule "SCAPEgoat"]
+	path = SCAPEgoat
+	url = https://github.com/vernamlab/SCAPEgoat.git
