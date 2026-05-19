@@ -1,0 +1,10 @@
+papermill
+jupyter
+nbclient
+numpy
+scipy
+matplotlib
+pandas
+scikit-learn
+tqdm
+chipwhisperer
