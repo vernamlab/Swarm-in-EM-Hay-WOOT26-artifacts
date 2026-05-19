@@ -21,10 +21,10 @@ clearvars
 % -------------------------------------------------------------------------
 % Configuration
 % -------------------------------------------------------------------------
-inputDir = 'MATLAB_exports';% change it to input_matlab if you want to use the downaloaded data from the box
-inputFile = 'data_100_121_impl_d.csv';% change it to appropriate file names
-outputDir = 'output_matlab';
-outputFile = 'GM_noiseless_pca_impl_d_new.mat';
+if ~exist('inputDir', 'var'), inputDir = 'MATLAB_exports'; end % change to input_matlab for Box data
+if ~exist('inputFile', 'var'), inputFile = 'data_100_121_impl_d.csv'; end
+if ~exist('outputDir', 'var'), outputDir = 'output_matlab'; end
+if ~exist('outputFile', 'var'), outputFile = 'GM_noiseless_pca_impl_d_new.mat'; end
 
 numGridLocations = 121;
 tracesPerLocation = 100;
@@ -97,7 +97,9 @@ GMModel_final = fitgmdist(score(:, 1:2), optimalK, ...
 % This GMM is the denoised model used for sampling.
 gm = gmdistribution(GMModel_final.mu, GMModel_final.Sigma, GMModel_final.ComponentProportion);
 gmPDF = @(x, y) arrayfun(@(x0, y0) pdf(gm, [x0 y0]), x, y);
-figure(1)
+if usejava('desktop') || feature('ShowFigureWindows')
+    figure(1)
+end
 fsurf(gmPDF, [-3 3])
 
 [posteriorProbabilities, ~] = posterior(GMModel_final, score(:, 1:2));
@@ -118,7 +120,9 @@ GMModel_final = fitgmdist(denoisedData, optimalK - 1, ...
 
 gm = gmdistribution(GMModel_final.mu, GMModel_final.Sigma, GMModel_final.ComponentProportion);
 gmPDF = @(x, y) arrayfun(@(x0, y0) pdf(gm, [x0 y0]), x, y);
-figure(2)
+if usejava('desktop') || feature('ShowFigureWindows')
+    figure(2)
+end
 fsurf(gmPDF, [-3 3])
 
 % Persist the final GMM using the configured output location.

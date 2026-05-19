@@ -22,16 +22,23 @@ clc;
 % -------------------------------------------------------------------------
 % Configuration
 % -------------------------------------------------------------------------
-inputDir = 'MATLAB_exports'; % change it to input_matlab if you want to use the downaloaded data from the box
-inputFile = 'MI_FPGA_impl_d_10x10_1000traces_20260506_1334.mat'; % change it to appropriate file names
-gmmDir = 'output_matlab';
-gmmFile = 'GM_noiseless_pca_impl_d_new.mat'; % change it to appropriate file names
-resultsDir = 'output_matlab';
-resultsFile = 'exp_MI_fpga_impl_d_para_3_5.txt';
-figureDir = 'output_matlab';
-figurePrefix = 'PSO_SwarmSize_t';
-gifDir = 'output_matlab';
-gifPrefix = 'pso_visualization_10';
+if ~exist('inputDir', 'var'), inputDir = 'MATLAB_exports'; end % change to input_matlab for Box data
+if ~exist('inputFile', 'var')
+    miFiles = dir(fullfile(inputDir, 'MI_*.mat'));
+    if isempty(miFiles)
+        error('No MI_*.mat files found in %s. Run the notebook export first.', inputDir);
+    end
+    [~, idx] = max([miFiles.datenum]);
+    inputFile = miFiles(idx).name;
+end
+if ~exist('gmmDir', 'var'), gmmDir = 'output_matlab'; end
+if ~exist('gmmFile', 'var'), gmmFile = 'GM_noiseless_pca_impl_d_new.mat'; end
+if ~exist('resultsDir', 'var'), resultsDir = 'output_matlab'; end
+if ~exist('resultsFile', 'var'), resultsFile = 'exp_MI_fpga_impl_d_para_3_5.txt'; end
+if ~exist('figureDir', 'var'), figureDir = 'output_matlab'; end
+if ~exist('figurePrefix', 'var'), figurePrefix = 'PSO_SwarmSize_t'; end
+if ~exist('gifDir', 'var'), gifDir = 'output_matlab'; end
+if ~exist('gifPrefix', 'var'), gifPrefix = 'pso_visualization_10'; end
 
 % Create output folders if they do not already exist.
 if ~exist(gmmDir, 'dir')
