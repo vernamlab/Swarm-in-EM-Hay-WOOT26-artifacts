@@ -1,1 +1,5 @@
 papermill
+numpy
+scipy
+matplotlib
+chipwhisperer

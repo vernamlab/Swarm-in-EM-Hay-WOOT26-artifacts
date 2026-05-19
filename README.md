@@ -81,6 +81,14 @@ Expected local data layout for the supported demo dataset:
    - `output_matlab/GM_noiseless_pca_impl_d_new.mat`
    and writes PSO outputs to `output_matlab/`.
 
+
+## Restricted/offline environments
+
+- `reproduce_all.sh` performs a Papermill preflight import check before execution.
+- In offline/restricted environments, preinstall Python wheels from an internal mirror or wheelhouse before running:
+  - `pip install -r requirements.txt`
+- If `matlab` is not available on `PATH`, the script exits with code `127` after the Python stage.
+
 ## Expected output files/folders
 
 - `results/output.ipynb`
