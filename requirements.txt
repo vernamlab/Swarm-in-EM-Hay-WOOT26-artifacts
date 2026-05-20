@@ -3,3 +3,7 @@ numpy
 scipy
 matplotlib
 chipwhisperer
+torch
+scikit-learn
+pytrinamic
+seaborn
