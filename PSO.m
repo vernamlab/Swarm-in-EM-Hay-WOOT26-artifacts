@@ -69,8 +69,47 @@ c2_values = [0.8 1.2 1.5 1.8];
 c1_values = [1.0 1.5 1.8];
 inertia_values = {[0.5 0.7], [0.7 0.9]};
 
+if isempty(regexp(inputFile, '^MI_.*\.mat$', 'once'))
+    error('Input file "%s" is not an MI export. Expected a file matching MI_*.mat in %s.', inputFile, inputDir);
+end
+
 data = load(file_name);
-matrix = data.MI;
+dataVars = fieldnames(data);
+if isempty(dataVars)
+    error('No variables found in MI file "%s".', file_name);
+end
+
+% Prefer common MI variable names, then fall back to first numeric 2D matrix.
+preferredVarNames = {'MI', 'mi', 'MI_matrix', 'mi_matrix', 'matrix'};
+selectedVarName = '';
+for iVar = 1:numel(preferredVarNames)
+    candidate = preferredVarNames{iVar};
+    if isfield(data, candidate)
+        candidateValue = data.(candidate);
+        if isnumeric(candidateValue) && ismatrix(candidateValue)
+            selectedVarName = candidate;
+            break;
+        end
+    end
+end
+
+if isempty(selectedVarName)
+    for iVar = 1:numel(dataVars)
+        candidate = dataVars{iVar};
+        candidateValue = data.(candidate);
+        if isnumeric(candidateValue) && ismatrix(candidateValue)
+            selectedVarName = candidate;
+            break;
+        end
+    end
+end
+
+if isempty(selectedVarName)
+    error('Could not find a numeric 2D MI matrix in "%s". Variables found: %s', ...
+        file_name, strjoin(dataVars, ', '));
+end
+
+matrix = data.(selectedVarName);
 
 global visitCount;
 global matrix_global visitCount currentMethod
