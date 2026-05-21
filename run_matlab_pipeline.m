@@ -14,6 +14,7 @@ set(0, 'DefaultFigureVisible', 'off');
 run('GMM_gen.m');
 
 % Then run PSO using generated GMM and latest MI export.
+clear inputFile
 run('PSO.m');
 
 fprintf('MATLAB pipeline finished successfully.\n');
