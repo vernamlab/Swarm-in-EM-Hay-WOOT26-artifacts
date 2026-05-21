@@ -7,7 +7,7 @@ This repository reproduces the EM-SCA mutual-information (MI) analysis pipeline 
 > ePrint: https://eprint.iacr.org/2025/2244.pdf
 
 ## One-command reproduction (non-GUI)
-
+First download the CEMA folder to your repository: https://app.box.com/folder/305018805380
 Run from repository root:
 
 ```bash
