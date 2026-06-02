@@ -22,7 +22,7 @@ PY
 echo "[1/2] Running Python/Papermill pipeline for dataset=${DATASET}"
 python run_artifact.py --dataset "${DATASET}"
 
-module load matlab/R2024a
+# module load matlab/R2024a
 
 echo "[2/2] Running MATLAB pipeline in batch mode"
 if command -v matlab >/dev/null 2>&1; then
