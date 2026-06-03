@@ -7,6 +7,7 @@ This repository reproduces the EM-SCA mutual-information (MI) analysis pipeline 
 > ePrint: https://eprint.iacr.org/2025/2244.pdf
 
 ## One-command reproduction (non-GUI)
+The first step is to clone to the repository and the submodules:
 First, download the CEMA folder to your repository: [[[https://app.box.com/folder/305018805380](https://app.box.com/v/EMSCA-for-good)](https://app.box.com/s/vn98jhonf1x2brak1axpcxle3yeai4yc)](https://app.box.com/s/vn98jhonf1x2brak1axpcxle3yeai4yc)
 
 Run from repository root:
