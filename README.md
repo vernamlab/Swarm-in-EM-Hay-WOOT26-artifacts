@@ -8,11 +8,14 @@ This repository reproduces the EM-SCA mutual-information (MI) analysis pipeline 
 
 ## One-command reproduction (non-GUI)
 The first step is to clone to the repository and the submodules:
-'''bash
-git clone 
+
+```bash
+git clone https://github.com/vernamlab/Swarm-in-EM-Hay-WOOT26-artifacts.git
 git submodule update --init --recursive
-'''
-First, download the CEMA folder to your repository: [[[https://app.box.com/folder/305018805380](https://app.box.com/v/EMSCA-for-good)](https://app.box.com/s/vn98jhonf1x2brak1axpcxle3yeai4yc)](https://app.box.com/s/vn98jhonf1x2brak1axpcxle3yeai4yc)
+```
+
+Second, download the CEMA folder to your repository: [[[https://app.box.com/folder/305018805380](https://app.box.com/v/EMSCA-for-good)](https://app.box.com/s/vn98jhonf1x2brak1axpcxle3yeai4yc)](https://app.box.com/s/vn98jhonf1x2brak1axpcxle3yeai4yc)
+
 
 Run from repository root:
 
