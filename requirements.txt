@@ -7,3 +7,5 @@ torch
 scikit-learn
 pytrinamic
 seaborn
+ipykernel
+cwtvla
