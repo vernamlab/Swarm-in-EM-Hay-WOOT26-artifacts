@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ```
 
 
-Run from repository root:
+In order to run the code and see the results, please run the following command with the name of the dataset. impl_d for FPGA-1, impl_3 for FPGA-2 and  :
 
 ```bash
 ./reproduce_all.sh impl_d
