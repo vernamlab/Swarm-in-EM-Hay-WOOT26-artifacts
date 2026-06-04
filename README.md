@@ -79,7 +79,7 @@ Expected local data layout for the supported demo dataset:
 
 | Claim | Evaluation step | Expected output |
 |---|---|---|
-| C1: MI analysis pipeline can be reproduced non-interactively for `impl_d`. | `python run_artifact.py --dataset impl_d` (called by `reproduce_all.sh`) | `results/output.ipynb`, `MATLAB_exports/MI_*.mat`, `MATLAB_exports/TVLA_tstat_*.mat`, `MATLAB_exports/data_100_121_impl_d.csv`, these are the results related to Entropy maps, TVLA maps , correlation graphs and CPA |
+| C1: MI analysis pipeline can be reproduced non-interactively for `impl_d`. | `python run_artifact.py --dataset impl_d` (called by `reproduce_all.sh`) | `results/output.ipynb`, `MATLAB_exports/MI_*.mat`, `MATLAB_exports/TVLA_tstat_*.mat`, `MATLAB_exports/data_100_121_impl_d.csv`, these are the results related to Entropy maps, TVLA maps , correlation graphs and CPA. |
 | C2: GMM preprocessing runs from exported notebook traces without GUI/manual edits. | `matlab -batch "run_matlab_pipeline"` runs `GMM_gen.m` first | `output_matlab/GM_noiseless_pca_impl_d_new.mat`, these were used in Table 1. |
 | C3: PSO optimization runs from MI export + GMM in batch mode. | Same MATLAB batch command then runs `PSO.m` | `output_matlab/exp_MI_fpga_impl_d_para_3_5.txt`, `output_matlab/PSO_SwarmSize_t_*.fig`, `output_matlab/PSO_SwarmSize_t_*.png`, `output_matlab/pso_visualization_10*.gif`, these were used in Table 1. |
 
