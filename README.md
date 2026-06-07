@@ -120,3 +120,12 @@ Expected local data layout for the supported demo dataset:
 
 - Supported demo dataset remains `impl_d` by default.
 - Scientific core logic in `GMM_gen.m` and `PSO.m` is intentionally unchanged except minimal automation hooks for batch execution.
+
+## Video demonstration
+
+A video demonstration of the artifact workflow is available here:
+
+[Artifact demo video](https://github.com/vernamlab/Swarm-in-EM-Hay-WOOT26-artifacts/releases/download/v2.0.1/artifact.mp4)
+
+The video shows a fresh clone of the repository, downloading the datasets from the provided GitHub link, installing dependencies, and running the non-interactive artifact workflow.
+
